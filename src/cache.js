@@ -1,34 +1,41 @@
 const fs = require('fs')
 
-module.exports = ({ config, logger }) => {
-  let cache
+module.exports = class Cache {
 
-  try {
-    cache = JSON.parse(fs.readFileSync(cacheFile))
-  } catch (error) {
-    logger("Can't read exisiting cache") 
-
-    cache = {}
+  constructor ({ config, logger }) {
+    this.config = config
+    this.logger = logger
+    this.cacheFile = 'cache.json'
   }
 
-  return namespace => {
+  init () {
+    try {
+      this.cache = JSON.parse(fs.readFileSync(this.cacheFile))
+    } catch (error) {
+      this.logger("Can't read exisiting cache")
+
+      this.cache = {}
+    }
+  }
+
+  getInstance (namespace) {
+    const cache = this.cache
+    const save  = this._save.bind(this)
+    const getKey = key => [namespace, key].join('.')
+
     return {
       set: (key, value) => {
-        cache[this._key(key)] => value
-        this._save()
+        cache[getKey(key)] = value
+        save()
       },
 
       get: key => {
-        return cache[this._key(key)]
-      },
-
-      _key: key => {
-        return [namespace, key].join('.')
-      },
-
-      _save: () => {
-        return fs.writeFileSync(cacheFile, JSON.stringify(cache))
+        return cache[getKey(key)]
       }
     }
+  }
+
+  _save () {
+    return fs.writeFileSync(this.cacheFile, JSON.stringify(this.cache))
   }
 }
