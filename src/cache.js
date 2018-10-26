@@ -5,7 +5,7 @@ module.exports = class Cache {
   constructor ({ config, logger }) {
     this.config = config
     this.logger = logger
-    this.cacheFile = 'cache.json'
+    this.cacheFile = config.cache
   }
 
   init () {
