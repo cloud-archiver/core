@@ -6,9 +6,7 @@ module.exports = class Cache {
     this.config = config
     this.logger = logger
     this.cacheFile = config.cache
-  }
 
-  init () {
     try {
       this.cache = JSON.parse(fs.readFileSync(this.cacheFile))
     } catch (error) {
