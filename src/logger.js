@@ -4,8 +4,8 @@ module.exports = class Logger {
   }
 
   getInstance (namespace) {
-    return message => {
-      console.log(`${new Date()} [${namespace}] ${message}`)
+    return (...messages) => {
+      console.log(`${new Date()} [${namespace}] ${messages.join(' ')}`)
     }
   }
 }
