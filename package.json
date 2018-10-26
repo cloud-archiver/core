@@ -13,8 +13,6 @@
   "author": "Martin Wagner <web@mawalabs.de>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.19.0",
-    "express": "^4.16.4",
-    "spotify-web-api-node": "^4.0.0"
+    "commander": "^2.19.0"
   }
 }

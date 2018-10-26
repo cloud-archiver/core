@@ -1,8 +1,10 @@
 module.exports = {
-  storage: `${require('os').homedir()}/Dokumente/cloud`,
+  storage: `${require('os').homedir()}/cloud`,
   get cache () { return `${this.storage}/cache.json` },
 
-  plugins: [],
+  plugins: [
+    require('cloud-archiver-spotify') 
+  ],
 
   spotify: {
     key: '',
