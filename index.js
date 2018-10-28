@@ -1,17 +1,12 @@
 const program = require('commander')
 
-program
-  .option('-c, --config [config]', 'Config file to use', 'config.js')
-  .parse(process.argv)
-
-const config = require(`./${program.config}`)
+const config = require(`./config`)
 const Logger = require('./src/logger.js')
 const Cache = require('./src/cache.js')
 
 const loggerFactory = new Logger({ config })
 const logger = loggerFactory.getInstance('system')
 const cache = new Cache({ config, logger: loggerFactory.getInstance('cache') })
-
 
 config.plugins.forEach(Plugin => {
   logger('Loading', Plugin.name())
