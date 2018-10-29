@@ -3,8 +3,13 @@ module.exports = {
   get cache () { return `${this.storage}/cache.json` },
 
   plugins: [
-    require('cloud-archiver-spotify') 
+    require('@cloud-archiver/spotify') ,
+    require('@cloud-archiver/tasks')
   ],
+
+  tasks: {
+    daily: [] 
+  },
 
   spotify: {
     key: '',

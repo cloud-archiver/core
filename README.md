@@ -16,7 +16,7 @@ Now edit `config.js` and update your storage path. It is recommended to store th
 
 ## plugins
 
-Without plugins the system is quiet useless. To backup a service install the required plugin using npm, add it to your `config.js` and follow the plugin readme.
+Without plugins the system is quiet useless. To backup a service install the required plugin using npm, add it to your `config.js` and follow the plugins readme.
 
 ## license
 
